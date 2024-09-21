@@ -3,6 +3,7 @@ import EventCard from "../components/Card/EventCard.jsx";
 import { Box, Pagination, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { ITEMS_PER_PAGE } from "../constants/paginationConstants.js";
 import dayjs from "dayjs";
+import { BASE_URL } from '../constants/urlConstants.js';
 
 const HomePage = () => {
 	const [eventsData, setEventsData] = useState([]);
@@ -12,7 +13,7 @@ const HomePage = () => {
 	useEffect(() => {
 		const fetchEvents = async () => {
 			try {
-				const res = await fetch("http://localhost:5555/events");
+				const res = await fetch(BASE_URL);
 				const data = await res.json();
 				setEventsData(data);
 			} catch (e) {

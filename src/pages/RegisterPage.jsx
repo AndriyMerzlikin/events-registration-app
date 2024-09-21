@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Container, TextField, Button, Typography, Box, Radio, RadioGroup, FormControlLabel, FormLabel } from '@mui/material';
 import {useParams, useNavigate} from "react-router-dom";
 import { toast } from 'react-hot-toast';
+import { BASE_URL } from '../constants/urlConstants';
 
 const RegisterPage = () => {
 	const { eventId } = useParams()
@@ -30,13 +31,13 @@ const RegisterPage = () => {
 		};
 
 		try {
-			const response = await fetch(`http://localhost:5555/events/${eventId}/participants`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify(dataToSend),
-			});
+			const response = await fetch(`${BASE_URL}/${eventId}/participants`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      });
 
 			if (response.ok) {
 				const updatedEvent = await response.json();

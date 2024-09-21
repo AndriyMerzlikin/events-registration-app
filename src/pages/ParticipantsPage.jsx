@@ -2,6 +2,7 @@
 import {Box, TextField, Typography} from "@mui/material";
 import {useParams} from "react-router-dom";
 import {useState, useEffect} from "react";
+import { BASE_URL } from "../constants/urlConstants";
 
 
 
@@ -14,7 +15,7 @@ const ParticipantsPage = () => {
 	useEffect(() => {
 		const fetchEvent = async () => {
 			try {
-				const res = await fetch(`http://localhost:5555/events/${eventId}`);
+				const res = await fetch(`${BASE_URL}/${eventId}`);
 				const data = await res.json();
 				setParticipants(data.participants || []);
 			} catch (e) {
